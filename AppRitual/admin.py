@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Trabajadore, ReservasMesa, Evento, Avatar, Blog, EditPerfil
+from .models import Trabajadore, ReservasMesa, Evento, Avatar, Blog, EditPerfil, Comentario
 from Chat.models import Conversacion, Mensaje
 
 
@@ -40,6 +40,7 @@ admin.site.register(Evento, EventoAdmin)
 admin.site.register(Avatar)
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(EditPerfil)
+admin.site.register(Comentario)
 admin.site.register(Conversacion)
 admin.site.register(Mensaje)
 

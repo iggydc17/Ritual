@@ -89,4 +89,12 @@ class Blog(models.Model):
         return f" {self.titulo} {self.autor} {self.fechaPublicacion} "
 
 
+class Comentario(models.Model):
+    post = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    cuerpo = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.autor} comentó en: {self.comentario.titulo}"
 

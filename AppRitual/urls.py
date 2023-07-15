@@ -47,5 +47,7 @@ urlpatterns = [
     path('blog/buscar/', buscarBlogs, name="buscarBlogs"),
     path('blog/buscar/<str:keyword>/<str:date>/', buscarBlogs, name="buscarBlogs"),
     path('blog/detalle/<int:blog_id>/', detalleBlog, name="detalleBlog"),
+    path('blog/comentar/<int:blog_id>/', comentarBlog, name="comentarBlog"),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

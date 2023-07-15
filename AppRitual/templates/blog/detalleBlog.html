@@ -27,13 +27,38 @@
   {% endif %}
 
   <br><br>
-  <!-- logica para evitar que cualquiera borre un post -->
+  <!-- lógica para evitar que cualquiera borre un post -->
   {% if user.id == blog.autor_id %}
     <a href="{% url 'editarBlog' blog.id %}" style="background-color: #ffd700; color: black; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; text-decoration: none;">Editar</a>
     <br>
     <a href="{% url 'eliminarBlog' blog.id %}" style="background-color: red; color: black; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; text-decoration: none;">Eliminar</a>
   {% endif %}
   <br><br>
+  <a href="{% url 'comentarBlog' blog_id=blog.id %}" style="background-color: #48B7CD; color: black; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; text-decoration: none;">Comentar</a>
   <br>
+
+<!-- Bloque de comentarios -->
+{% if comentarios %}
+  <h1 style="color: white; font-weight:bold; margin-bottom: 30px; color: #b8860b;">Comentarios</h1><br>
+  <table style="width: 100%; border-collapse: collapse;">
+    <tbody>
+      {% for comentario in comentarios %}
+        <tr>
+          <td style="border-top: 1px solid rgb(34, 34, 34); padding: 10px 0;">
+            <p><strong>{{ comentario.autor }}</strong> | <span style="color: #D5DBDB;">{{ comentario.created_at }}</span></p>
+            <p>{{ comentario.cuerpo }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-bottom: 1px solid rgb(34, 34, 34); height: 10px;"></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No hay comentarios todavía.</p>
+{% endif %}
+
+
 </div>
 {% endblock %}

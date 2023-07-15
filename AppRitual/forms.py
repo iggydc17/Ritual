@@ -1,5 +1,5 @@
 from django import forms
-from .models import Trabajadore, Evento, ReservasMesa, Blog, EditPerfil
+from .models import Trabajadore, Evento, ReservasMesa, Blog, EditPerfil, Comentario
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 
@@ -104,3 +104,8 @@ class BlogForm(forms.ModelForm):
         widgets = {
             'cuerpo': forms.Textarea(attrs={'style': 'height: 274px; width: 1200px;'})
         }
+
+class ComentarioBlogForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ('cuerpo',)

@@ -3,8 +3,8 @@ from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.http import HttpResponseServerError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .forms import reservacionFormularios, eventoFormularios, trabajadorFormularios, AvatarForm, ChangePasswordForm, UserEditForm, BlogForm, EditPerfilForm
-from .models import Trabajadore, Evento, ReservasMesa, Avatar, Blog, EditPerfil
+from .forms import reservacionFormularios, eventoFormularios, trabajadorFormularios, AvatarForm, ChangePasswordForm, UserEditForm, BlogForm, EditPerfilForm, ComentarioBlogForm
+from .models import Trabajadore, Evento, ReservasMesa, Avatar, Blog, EditPerfil, Comentario
 from django.contrib.auth.models import User
 from django.db.models import Q
 
@@ -452,7 +452,7 @@ def editarBlog(request, blog_id):
         form = BlogForm(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             form.save()
-            return redirect('blog/detallegit')
+            return redirect('blog/detalle')
     else:
         form = BlogForm(instance=blog)
 
@@ -462,6 +462,22 @@ def editarBlog(request, blog_id):
 @login_required
 def editarBlogExitoso(request, blog_id):
     return render(request, "blog/editarBlogExitoso.html", {'blog_id': blog_id})
+
+
+@login_required
+def comentarBlog(request, blog_id):
+    blog = get_object_or_404(Blog, id=blog_id)
+    if request.method == 'POST':
+        form = ComentarioBlogForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = blog
+            comment.autor = request.user
+            comment.save()
+            return redirect('detalleBlog', blog_id=blog_id)
+    else:
+        form = ComentarioBlogForm()
+    return render(request, 'blog/comentarBlog.html', {'form': form})
 
 
 @login_required
@@ -477,8 +493,9 @@ def eliminarBlog(request, blog_id):
 @login_required
 def detalleBlog(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
+    comentarios = Comentario.objects.filter(post=blog)  # Obtener los comentarios
     print('detalle', blog.fechaPublicacion)
-    return render(request, 'blog/detalleBlog.html', {'blog': blog})
+    return render(request, 'blog/detalleBlog.html', {'blog': blog, 'comentarios': comentarios})
 
 
 @login_required
@@ -495,13 +512,16 @@ def buscarBlogs(request):
         
         query.add(Q(fechaPublicacion__date=date),Q.AND)
         '''
-        print('fecha',date)
+        print('fecha', date)
         if keyword:
             blogs = blogs.filter(Q(titulo__icontains=keyword) | Q(subtitulo__icontains=keyword) | Q(cuerpo__icontains=keyword))
         if date:
             blogs = blogs.filter(fechaPublicacion__date=date)
 
         return render(request, 'blog/buscarBlog.html', {'blogs': blogs})
+
+
+
 
 
 # Chat en otra App -----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,18 @@
+{% extends "AppRitual/templatePadre.html" %}
+{% load static %}
+{% block title %}Comentar | AppRitual{% endblock %}
+
+{% block welcome_message %}
+
+  <h2 style="color: #b8860b;">Comentar Publicación</h2>
+  <br>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <button type="submit" style="background-color: #ffd700; color: black; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; border: none; cursor: pointer;">Comentar</button>
+  </div>
+  </form>
+  <br>
+{% endblock %}
