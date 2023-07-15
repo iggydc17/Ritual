@@ -1,0 +1,32 @@
+<div>
+    {% extends "reservaciones.html" %}
+    {% load static %}
+
+    {% block getReservas %}
+        <h2 style="color: #b8860b;">Buscar Reserva:</h2>
+        <form action="/buscarReservas/" method="GET">
+            <input placeholder="Nombre" type="text" name="nombre" id="nombre" required>
+            <input type="submit" value="Buscar">
+        </form>
+
+        {% if reservas %}
+                <h2 style="color: #b8860b;">Datos de Reservas:</h2>
+            {% for reserva in reservas %}
+                <ul>
+                    <li><strong>Nombre:</strong> {{ reserva.nombre }}</li>
+                    <li><strong>Apellido:</strong> {{ reserva.apellido }}</li>
+                    <li><strong>Fecha Solicitud:</strong> {{ reserva.fechaSolicitud }}</li>
+                    <li><strong>Fecha Reserva:</strong> {{ reserva.fechaReserva }}</li>
+                    <li><strong>Hora Reserva:</strong> {{ reserva.horaReserva }}</li>
+                    <li><strong>Cantidad Personas:</strong> {{ reserva.numeroPersonas }}</li>
+                    <li><strong>Teléfono:</strong> {{ reserva.telefono }}</li>
+                    <li><strong>Email:</strong> {{ reserva.email }}</li>
+                    <li><strong>Estado:</strong> {{ reserva.estado }}</li>
+                    <li><strong>Anotaciones:</strong> {{ reserva.anotaciones }}</li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron reservas.</p>
+        {% endif %}
+    {% endblock %}
+</div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet"  href="{% static 'css/style.css' %}">
+    <link rel="stylesheet"  href="{% static 'js/main.js' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logoIco.ico' %}">
+
+    <title>Registro AppRitual</title>
+</head>
+<body>
+<body style="background-image: url({% static 'img/loggg.jpg' %}">
+    <div class="containerForm">
+        <form action="" method="POST" class="formLogin"> {% csrf_token %}
+            <h3 style="color: white; font-weight:bold; margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">REGISTRO RITUAL</h3>
+            <div>
+                <input name="username" type="text" placeholder="User" class="inputLogin" required>
+            </div>
+            <div>
+                <input name="password1" type="password" placeholder="Password" class="inputLogin" required>
+            </div>
+            <div>
+                <input name="password2" type="password" placeholder="Password Confirmation" class="inputLogin" required>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit" style="background-color: #ffd700; color: black; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; text-transform: uppercase; display: inline-block;"> Registrar</button>
+            </div>
+            <p style="color: white;">Ya tienes una cuenta? <a href="{% url 'login' %}">Iniciar sesión</a></p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<div>
+    {% extends "bodasEventos.html" %}
+    {% load static %}
+
+    {% block getBodasEventos %}
+        <h2 style="color: #b8860b;">Buscar Evento:</h2>
+        <form action="/buscarBodasEventos/" method="GET">
+            <input placeholder="Nombre" type="text" name="nombre" id="nombre" required>
+            <input type="submit" value="Buscar">
+        </form>
+
+        {% if eventos %}
+                <h2 style="color: #b8860b;">Eventos:</h2>
+            {% for evento in eventos %}
+                <ul>
+                    <li><strong>Nombre:</strong> {{ evento.nombre }}</li>
+                    <li><strong>Apellido:</strong> {{ evento.apellido }}</li>
+                    <li><strong>Tipo de Evento:</strong> {{ evento.tipoEvento }}</li>
+                    <li><strong>Privado:</strong> {{ evento.privado }}</li>
+                    <li><strong>Fecha de Solicitud:</strong> {{ evento.fechaSolicitud }}</li>
+                    <li><strong>Fecha del Evento:</strong> {{ evento.fechaEvento }}</li>
+                    <li><strong>Hora del Evento:</strong> {{ evento.horaEvento }}</li>
+                    <li><strong>Número de Invitados:</strong> {{ evento.numeroInvitados }}</li>
+                    <li><strong>Teléfono:</strong> {{ evento.telefono }}</li>
+                    <li><strong>Email:</strong> {{ evento.email }}</li>
+                    <li><strong>Duración:</strong> {{ evento.duracion }}</li>
+                    <li><strong>Costo:</strong> {{ evento.costo }}</li>
+                    <li><strong>Estado:</strong> {{ evento.estado }}</li>
+                    <li><strong>Anotaciones:</strong> {{ evento.anotaciones }}</li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron eventos.</p>
+        {% endif %}
+    {% endblock %}
+</div>

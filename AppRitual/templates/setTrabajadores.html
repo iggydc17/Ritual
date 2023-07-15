@@ -1,0 +1,14 @@
+<div>
+    {% extends "trabajadores.html" %}
+    {% load static %}
+
+    {% block setTrabajadores %}
+    <h2 style="color: #b8860b;">Agregar Trabajador:</h2>
+        <form action="/setTrabajadores/" method="POST"> {% csrf_token %}
+            <table>
+                {{ miTrabajador.as_table }}
+            </table>
+            <input type="submit" value="Agregar"> style="background-color: #ffd700; color: black; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; border: none; cursor: pointer; margin-left: 460;">
+        </form>
+    {% endblock %}
+</div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}{% endblock %}
+    {% load static %}
+    <link rel="stylesheet"  href="{% static 'css/style.css' %}">
+    <link rel="stylesheet"  href="{% static 'js/main.js' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logoIco.ico' %}">
+
+    <title>Login Ritual</title>
+</head>
+{% block welcome_message %}
+{% endblock %}
+    <body style="background-image: url({% static 'img/loggg.jpg' %}">
+        <div class="containerForm">
+            <form action="" method="POST" class="formLogin"> {% csrf_token %}
+                <h3 style="color: white; font-weight:bold; margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">LOGIN RITUAL</h3>
+                <div>
+                    <input name="user" type="text" placeholder="User" class="inputLogin" required>
+                </div>
+                <div>
+                    <input name="password" type="password" placeholder="Password" class="inputLogin" required>
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit" style="background-color: #ffd700; color: black; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; text-transform: uppercase; display: inline-block;"> Login </button>
+                </div>
+                {% if error %}
+                    <p style="color: red;">{{error}}</p>
+                {% endif %}
+                <p>¿Aún no tienes una cuenta? <a href="{% url 'registro' %}">Regístrate</a></p>
+            </form>
+        </div>
+</body>
+</html>

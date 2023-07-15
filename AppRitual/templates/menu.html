@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu | AppRitual</title>
+    {% extends "AppRitual/templatePadre.html" %}
+    {% load static %}
+</head>
+<body>
+    {% block welcome_message %}
+    <!-- No se mostrará ningún contenido aquí -->
+    {% endblock %}
+
+    {% block content %}
+        <h1 style="color: #b8860b;">Menú</h1>
+            <div>
+                <br>
+                <a href="https://drive.google.com/file/d/1z2M-wbF2yj8Wi7M23LBy23W_BlnCtB_Q/view?usp=drive_link"><u><span style="font-size: 17px; color: #daa520;"><strong>Bebidas & Tragos</strong></span></u></a>
+            </div>
+            <div>
+                <a href="https://drive.google.com/file/d/1PgW-LseyMT4tH_JjgRaT6vcSO2ft9KfA/view?usp=drive_link"><u><span style="font-size: 17px; color: #daa520;"><strong>Brunch & Comida</strong></span></u></a>
+            </div>
+            <br>
+    {% endblock %}
+
+

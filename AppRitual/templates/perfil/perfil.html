@@ -1,0 +1,43 @@
+{% extends "AppRitual/templatePadre.html" %}
+{% load static %}
+{% block title %}Perfil | AppRitual{% endblock %}
+
+{% block welcome_message %}
+    <div>
+        <h1 style="color: #b8860b;">Perfil</h1>
+
+        <br>
+        <div style="display: flex; align-items: flex-start;">
+            <div style="margin-right: 20px;">
+                <img src="{{ user.avatar.image.url }}" alt="Avatar" style="max-width: 800px;">
+            </div>
+            <div>
+                <h1>{{ user.username }}</h1>
+                <br>
+                <br>
+                <p><strong>Nombre:</strong> {{ user.first_name }}</p>
+                <br>
+                <p><strong>Apellido:</strong> {{ user.last_name }}</p>
+                <br>
+                <p><strong>Sector:</strong> {{ usuario.sector }}</p>
+                <br>
+                <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+                <br>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <br>
+                <p><strong>Fecha Contratación:</strong> {{ usuario.fechaContratacion }}</p>
+                <br>
+                <p><strong>Redes:</strong>
+                  <a href="{{ usuario.redes }}" style="display: inline-block; background-color: #ffd700; color: black; padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; text-decoration: none;">Ver</a>
+                </p>
+                <br>
+                <p><strong>Descripción:</strong> {{ usuario.descripcion }}</p>
+            </div>
+        </div>
+
+        <div style="height: 10vh; margin-top: 10px; margin-left: 25px;">
+            <a href="{% url 'editarPerfil' %}" style="background-color: #ffd700; color: black; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; border: none; cursor: pointer;">Editar Perfil</a>
+            <a href="{% url 'editAvatar' %}" class="btn btn-success" style="background-color: #ffd700; color: black; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; border: none; cursor: pointer;">Cambiar Foto Perfil</a>
+        </div>
+    </div>
+{% endblock %}

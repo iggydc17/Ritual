@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contactar | AppRitual</title>
+    {% extends "AppRitual/templatePadre.html" %}
+    {% load static %}
+</head>
+<body>
+    {% block welcome_message %}
+        <!-- No se mostrará ningún contenido aquí -->
+    {% endblock %}
+    {% block content %}
+        <h1 style="color: #b8860b;">Contáctanos</h1>
+        <form action="/contactar/" method="POST">
+            {% csrf_token %}
+            <p>Nombre: <input type="text" name="nombre"></p>
+            <p>Asunto: <input type="text" name="asunto"></p>
+            <p>Tu email: <input type="text" name="email"></p>
+            <p>
+                <label for="mensaje">Mensaje:</label><br>
+                <textarea id="mensaje" name="mensaje" rows="20" cols="95"></textarea>
+            </p>
+            <div style="text-align: center;">
+                <a href="{% url 'contactarExitoso' %}"
+                    style="background-color: #ffd700; color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; text-transform: uppercase; display: inline-block;"> Enviar
+                </a>
+            </div>
+        </form>
+    {% endblock %}
+</body>
+</html>

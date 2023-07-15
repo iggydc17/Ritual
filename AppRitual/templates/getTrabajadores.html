@@ -1,0 +1,35 @@
+<div>
+    {% extends "trabajadores.html" %}
+    {% load static %}
+
+    {% block getTrabajadores %}
+        <h2 style="color: #b8860b;">Buscar Trabajador:</h2>
+        <form action="/buscarTrabajadores/" method="GET">
+            <input placeholder="Nombre" type="text" name="nombre" id="nombre" required>
+            <input type="submit" value="Buscar">
+        </form>
+
+        {% if trabajadores %}
+            <h2 style="color: #b8860b;">Información Trabajadores:</h2>
+            {% for trabajador in trabajadores %}
+                <ul>
+                    <li><strong>Nombre:</strong> {{ trabajador.nombre }}</li>
+                    <li><strong>Apellido:</strong> {{ trabajador.apellido }}</li>
+                    <li><strong>Sector:</strong> {{ trabajador.sector }}</li>
+                    <li><strong>Teléfono:</strong> {{ trabajador.telefono }}</li>
+                    <li><strong>Email:</strong> {{ trabajador.email }}</li>
+                    <li><strong>Fecha Contratación:</strong> {{ trabajador.fechaContratacion }}</li>
+                    <li><strong>Salario:</strong> {{ trabajador.salario }}</li>
+                    <li><strong>Anotaciones:</strong> {{ trabajador.anotaciones }}</li>
+                    <li><strong>Foto ID:</strong>
+                        <a href="{{ trabajador.foto_id.url }}" target="_blank">
+                            <img src="{{trabajador.foto_id.url }}" alt="{{ trabajador.nombre }} ID" style="width: 200px; height: 100px; object-fit: cover;">
+                        </a>
+                    </li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>No se encontró ese trabajador.</p>
+        {% endif %}
+    {% endblock %}
+</div>

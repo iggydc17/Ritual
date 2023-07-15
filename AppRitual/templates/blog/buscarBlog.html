@@ -1,0 +1,32 @@
+{% extends "AppRitual/templatePadre.html" %}
+{% load static %}
+{% block title %}Búsqueda de Blogs | AppRitual{% endblock %}
+
+{% block welcome_message %}
+<style>
+
+    .separator {
+    border-top: 1px solid rgb(34, 34, 34);
+    margin: 20px 0;
+  }
+
+</style>
+<h1 style="color: #b8860b;">Resultados de búsqueda</h1>
+
+<form method="get" action="{% url 'buscarBlogs' %}">
+  <input type="text" name="keyword" placeholder="Palabra clave">
+  <input type="date" name="date" placeholder="Fecha de publicación">
+  <button type="submit">Buscar</button>
+</form>
+
+<br>
+
+{% for blog in blogs %}
+  <h2 style="background-color: transparent; color: white;"><a href="{% url 'detalleBlog' blog.id %}" style="color: white; text-decoration: none;">{{ blog.titulo }}</a></h2>
+  <h4 style="color: white;">{{ blog.autor }} | <span style="color: rgb(234, 237, 237 );">{{ blog.fechaPublicacion }}</span></h4>
+    <br><br>
+  <div class="separator"></div> <!-- Separador horizontal -->
+{% empty %}
+  <p>No se encontraron resultados.</p>
+{% endfor %}
+{% endblock %}

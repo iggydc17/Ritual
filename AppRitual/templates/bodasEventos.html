@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bodas & Eventos | AppRitual</title>
+    {% extends "AppRitual/templatePadre.html" %}
+    {% load static %}
+</head>
+<body>
+    {% block welcome_message %}
+    {% endblock %}
+
+    {% block setBodasEventos %}
+        <div style="margin-left: 10px;">
+            <h1 style="color: #b8860b;">Eventos: </h1>
+            <form action="" method="GET">
+                <input placeholder="Nombre o Apellido" type="text" name="nombre" id="nombre" required>
+                <input type="submit" value="Buscar" style="background-color: #ffd700; color: black; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; border: none; cursor: pointer;">
+            </form>
+        </div>
+        <br>
+        <table id="tableEvento">
+            <thead id="tituloTablaEventos">
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Tipo Evento</th>
+                <th>Privado</th>
+                <th>Fecha Solicitud</th>
+                <th>Fecha Evento</th>
+                <th>Hora Evento</th>
+                <th>Número Invitados</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Duración</th>
+                <th>Costo</th>
+                <th>Estado</th>
+                <th>Anotaciones</th>
+                <th>Acciones</th>
+            </thead>
+            {% for evento in Eventos %}
+                <tr>
+                    <td>{{ evento.nombre }}</td>
+                    <td>{{ evento.apellido }}</td>
+                    <td>{{ evento.tipoEvento }}</td>
+                    <td>
+                        {% if evento.privado %}
+                            <span style="color: green;">✔</span>
+                        {% else %}
+                            <span style="color: red;">✘</span>
+                        {% endif %}
+                    </td>
+                    <td><span style="color: #b8860b;">{{ evento.fechaSolicitud|date:"d/m/Y" }}</span></td>
+                    <td>{{ evento.fechaEvento|date:"d/m/Y" }}</td>
+                    <td>{{ evento.horaEvento|time:"h:i A" }}</td>
+                    <td>{{ evento.numeroInvitados }}</td>
+                    <td>{{ evento.telefono }}</td>
+                    <td><span style="color: #b8860b;">{{ evento.email }}</span></td>
+                    <td>{{ evento.duracion }}</td>
+                    <td>{{ evento.costo }}</td>
+                    <td>
+                        {% if evento.estado %}
+                            <span style="color: green;">✔</span>
+                        {% else %}
+                            <span style="color: red;">✘</span>
+                        {% endif %}
+                    </td>
+                    <td><span style="color: #b8860b;">{{ evento.anotaciones }}</span></td>
+                    <td>
+                        {% if request.user.is_superuser %}
+                            <button style="background-color: #ffd700; padding: 5px 5px; border-radius: 5px; border: none;"><a href="{% url 'editarBodasEventos' evento.id %}" style=><svg width="16" height="16" fill="#000000" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg></a></button>
+                            <button style="background-color: red; padding: 5px 5px; border-radius: 5px; border: none;"><a href="{% url 'deleteBodasEventos' evento.id %}"><svg  width="16" height="16" fill="white" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/><path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/></svg></a></button>
+                        {% else %}
+                            <span style="color: gray;">Acciones solo para superusuarios</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            <form action="{% url 'setBodasEventos' %}" method="POST">
+                {% csrf_token %}
+                <tr>
+                    {% for field in miEvento %}
+                        <td>{{field}}</td>
+                    {% endfor %}
+                    <td>
+                        {% if request.user.is_superuser %}
+                            <input type="submit" value="✚ Agregar" style="background-color: green; color: white; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; border: none; cursor: pointer;">
+                        {% else %}
+                            <span style="color: gray;">Agregar solo para superusuarios</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </form>
+        </table>
+        <br>
+    {% endblock setBodasEventos %}
+
+    {% block editarBodasEventos %}
+    {% endblock editarBodasEventos %}
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trabajadores | AppRitual</title>
+    {% extends "AppRitual/templatePadre.html" %}
+    {% load static %}
+</head>
+<body>
+    {% block welcome_message %}
+    {% endblock %}
+
+    {% block getTrabajadores %}
+        <div style="margin-left: 10px;">
+        <h1 style="color: #b8860b;">Trabajadores</h1>
+            <form action="" method="GET">
+                <input placeholder="Nombre o Apellido" type="text" name="nombre" id="nombre" required>
+                <input type="submit" value="Buscar" style="background-color: #ffd700; color: black; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; border: none; cursor: pointer;">
+            </form>
+            <br>
+        </div>
+        {% if trabajadores %}
+            <ul>
+                {% for trabajador in trabajadores %}
+                    <li>{{ trabajador.nombre }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <table id="tableTrabajadores">
+            <thead id="tituloTablaTrabajadores">
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Sector</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Fecha Contratación</th>
+                <th>Salario</th>
+                <th>Foto ID</th>
+                <th>Anotaciones</th>
+                <th>Acciones</th>
+            </thead>
+            {% for trabajador in Trabajadores %}
+                <tr>
+                    <td>{{ trabajador.nombre }}</td>
+                    <td>{{ trabajador.apellido }}</td>
+                    <td>{{ trabajador.sector}}</td>
+                    <td>{{ trabajador.telefono}}</td>
+                    <td><span style="color: #b8860b;">{{ trabajador.email }}</span></td>
+                    <td><span style="color: #b8860b;">{{ trabajador.fechaContratacion|date:"d/m/Y" }}</span></td>
+                    <td>{{ trabajador.salario }}</td>
+                    <td>
+                      <a href="{{ trabajador.foto_id.url }}" target="_blank">
+                        <img src="{{ trabajador.foto_id.url }}" alt="{{ trabajador.nombre }} ID" style="width:200px; height: 100px; object-fit: cover; cursor:pointer;">
+                      </a>
+                    </td>
+                    <td>{{ trabajador.anotaciones }}</td>
+                    <td>
+                        {% if request.user.is_superuser %}
+                            <button style="background-color: #ffd700; padding: 5px 5px; border-radius: 5px; border: none;"><a href="{% url 'editarTrabajadores' trabajador.id %}" style=><svg width="16" height="16" fill="#000000" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg></a></button>
+                            <button style="background-color: red; padding: 5px 5px; border-radius: 5px; border: none;"><a href="{% url 'deleteTrabajadores' trabajador.id %}"><svg  width="16" height="16" fill="white" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/><path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/></svg></a></button>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+            <form action="{% url 'setTrabajadores' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in miTrabajador %}
+                    <td>{{field}}</td>
+                {% endfor %}
+                <td>
+                    {% if request.user.is_superuser %}
+                        <input type="submit" value="✚ Agregar" style="background-color: green; color: white; padding: 10px 20px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; border: none; cursor: pointer;">
+                    {% else %}
+                        <span style="color: gray;">✚ Agregar (solo superusuarios)</span>
+                    {% endif %}
+                </td>
+            </form>
+        </tr>
+        </table>
+        <br>
+    {% endblock %}
+</body>
+</html>

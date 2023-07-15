@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet"  href="{% static 'css/style.css' %}">
+    <link rel="stylesheet"  href="{% static 'js/main.js' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logoIco.ico' %}">
+    <script integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+
+        .col-md-6 {
+            width: 50%;
+            position: relative;
+        }
+
+        .col-md-6::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 80%;
+            background-color: gold;
+        }
+
+        .col-md-6 .info {
+            padding-left: 60px;
+        }
+
+        .col-md-6 h3 {
+            margin-top: 20;
+            padding-left: 20px;
+        }
+
+        #navbar ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        #navbar ul li {
+            margin-left: 30px;
+        }
+
+        /* New styles */
+        .logo {
+            flex: 0 0 300px;
+        }
+
+        #navbar {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .header-divider {
+            height: 2px;
+            background-color: gold;
+            border: none;
+        }
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .topheader-bar {
+            border-top: 1px solid #383636;
+        }
+        <style>
+      .nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .nav li {
+        display: inline-block;
+        margin-left: 10px;
+      }
+</style>
+
+<body>
+
+<!--Top Header-->
+<!-- agregamos display flex y justificacion de contenido -->
+<div style="display:flex; justify-content:end;">
+        <a href="{% url 'chat' %}">
+        <svg width="30" height="30" fill="gold" class="bi bi-chat-dots" viewBox="0 0 16 16">
+          <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+          <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"/>
+        </svg>
+        <!-- quitamos los margin -->
+        <li style="display: inline-block;">
+
+        <a href="{% url 'perfil' %}">
+        <button style="width: 100px; border: none; border-radius: 30%; display: flex; justify-content: center; align-items: center; background: inherit; cursor: pointer;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#ffd700">
+            <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.22 0-10 1.61-10 4v2h20v-2c0-2.39-6.78-4-10-4zm0-9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 5c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+        </svg>
+        </button>
+        </a>
+    </li>
+    <!-- en el ultimo boton -login- acomodamos el padding -->
+    <li style="display: inline-block; padding: 10px 15px 0px 0px; ">
+        <a class="nav-link" href="{% url 'logout' %}"><strong>Logout</strong></a>
+    </li>
+</div>
+
+        <div class="topheader-bar"></div>
+
+        <!--Header-->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <div class="logo">
+                <a href="{% url 'inicio' %}">
+                    <img src="{% static 'img/logo.png' %}" alt="Logo Ritual" width="100" height="50">
+                </a>
+            </div>
+            <div class="header-bar"></div>
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'listaBlog' %}" style="font-size: 15px;"><strong>Blog</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'menu' %}" style="font-size: 15px;"><strong>Menú</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'presentaciones' %}" style="font-size: 15px;"><strong>Presentaciones</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodasEventos' %}" style="font-size: 15px;"><strong>Bodas & Eventos</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'trabajadores' %}" style="font-size: 15px;"><strong>Trabajadores</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'reservaciones' %}" style="background-color: #ffd700; color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 15px;">Reservaciones</a></li>
+                </ul>
+            </nav>
+            </div>
+        <div class="bottom-bar" style="border-top: 2px solid gold;"></div>
+            <div class="container"></div>
+
+    {% block welcome_message %}
+    <div class="centered-content">
+        <h1>¡Bienvenidos equipo!</h1>
+        <h2>¡¡¡Esta es nuestra App de trabajo!!!</h2>
+    </div>
+    <div>
+        <img src="{% static 'img/inicio2.png' %}" alt="inicio" class="centered-image">
+    </div>
+    <br>
+    {% endblock %}
+
+
+    {% block content %}
+        <div class="reservacionFormularios">
+            {% block setReservas %}
+            {% endblock %}
+        </div>
+        <div class="reservacionFormularios">
+            {% block getReservas %}
+            {% endblock %}
+        </div>
+        <div class="eventoFormularios">
+            {% block setBodasEventos %}
+            {% endblock %}
+        </div>
+        <div class="eventoFormularios">
+            {% block getBodasEventos %}
+            {% endblock %}
+        </div>
+        <div class="trabajadorFormularios">
+            {% block setTrabajadores %}
+            {% endblock %}
+        </div>
+        <div class="trabajadorFormularios">
+            {% block getTrabajadores %}
+            {% endblock %}
+        </div>
+
+    {% endblock %}
+
+    <hr class="header-divider">
+
+        <!--Footer-->
+    <footer>  <!--TODOS LOS BOTONES LOS SAQUÉ DE www.getbootstrap.com y les cambié el tamaño y color.-->
+
+<!--Ubicación-->
+
+        <div class="container">
+            <div class="col-md-6">
+                <a href="https://goo.gl/maps/z7zasYn2QWppPeug8" target="_blank" style="display: flex; align-items: center;">
+                    <svg  width="30" height="30" viewBox="0 0 24 24" fill="#ffd700">
+                        <path d="M12 2c-4.97 0-9 4.03-9 9 0 4.25 6.58 12.28 8.3 14.16.19.24.49.24.68 0C14.42 23.28 21 15.25 21 11c0-4.97-4.03-9-9-9zm0 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <p>Calle Ignacio Zaragoza N° 22, Tepoztlán, Morelos, México</p>&nbsp;
+                        <svg width="30" height="30" fill="gold" class="bi bi-map" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+                        </svg>
+                    </svg>
+                </a>
+
+<!--WhatsApp-->
+
+    <a href="https://api.whatsapp.com/message/62O2SG4SX4O3P1?autoload=1&app_absent=0" target="_blank" style="display: flex; align-items: center;">
+        <svg width="30" height="30" fill="gold" class="bi bi-whatsapp" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+        <p>&nbsp;+52 777 496 4319</p>
+        </svg>
+    </a>
+
+     <!--Email-->
+
+    <a href="/contactar/">
+        <svg width="30" height="30" fill="gold" class="bi bi-envelope-at" viewBox="0 0 16 16">
+            <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
+            <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648Zm-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z"/>
+        </svg>
+    </a>
+
+    <!--Instagram-->
+
+    <a href="https://www.instagram.com/ritualtepoztlan/?igshid=YmMyMTA2M2Y%3D" target="_blank">
+        <svg width="30" height="30" fill="gold" class="bi bi-instagram" viewBox="0 0 16 16">
+            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+        </svg>
+    </a>
+
+    <!--Facebook-->
+
+    <a href="https://www.facebook.com/ritualcocinadehogar" target="_blank">
+        <svg width="30" height="30" fill="gold" class="bi bi-facebook" viewBox="0 0 16 16">
+            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+        </svg>
+    </a>
+
+
+        <!--Horarios-->
+
+            </div>
+            <div class="col-md-6">
+                <h3 class="info" style="color: copper;">
+              <br>
+              <span style="display: inline-flex; align-items: center;">
+                Horarios de atención
+                <svg width="30" height="30" fill="gold" class="bi bi-clock" viewBox="0 0 16 16" style="margin-left: 5px;">
+                  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                </svg>
+              </span>
+            </h3>
+
+                <div class="info">
+                    <br>
+                    <p>Viernes: 9:00 AM - 08:00 PM</p>
+                    <p>Sábados & Domingos: 09:00 AM - 10:00 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <!--Barra divisoria-->
+
+        <div class="divider"></div>
+        <div class="bottom-bar" style="border-top: 2px solid gold;">
+
+            <!--D.R.-->
+
+            <div class="container">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                &nbsp;&nbsp;&nbsp;<p style="margin: 0;">&copy; 2023 Ritual. Todos los derechos reservados.</p>
+                <a class="nav-link" href="{% url 'acercaRitual' %}" style="font-size: 16px; margin-left: 850px">Acerca Ritual</a>
+              </div>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>

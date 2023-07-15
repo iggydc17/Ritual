@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Acerca de Ritual y Tepoztlán | AppRitual</title>
+    {% extends "AppRitual/templatePadre.html" %}
+    {% load static %}
+    <style>
+        .centered-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+    {% block welcome_message %}
+    {% endblock %}
+    {% block content %}
+    <h2 style="color: #b8860b;">Acerca de Ritual y Tepoztlán</h2>
+    <div>
+        <img src="{% static 'img/rittual.webp' %}" alt="Tepoztlán" class="centered-image">
+    </div>
+    <section style="text-align: left;">
+      <h2 style="color: #b8860b; text-align: left;">Ritual</h2>
+      <p style="text-align: left;">
+        Ritual es un restaurante ubicado en el pintoresco pueblo de Tepoztlán, en el estado de Morelos, México. Nos enorgullece ofrecer una cocina de calidad, fusionando sabores tradicionales mexicanos con técnicas culinarias modernas. Nuestro menú incluye una amplia variedad de platillos inspirados en ingredientes frescos y locales. Desde exquisitos tacos y tamales hasta deliciosas quesadillas y postres artesanales, en Ritual estamos comprometidos a brindar una experiencia culinaria excepcional que deleitará tus sentidos. Ya sea que estés buscando una cena romántica, una celebración especial o simplemente una comida deliciosa con amigos, en Ritual encontrarás el ambiente perfecto para disfrutar de una experiencia gastronómica inolvidable.
+      </p>
+    </section>
+    <section>
+      <div style="text-align: center;">
+        <img src="{% static 'img/tepoz.jpg' %}" alt="Tepoztlán" class="centered-image">
+      </div>
+      <br>
+      <h2 style="color: #b8860b; text-align: left;">Tepoztlán</h2>
+      <p style="text-align: left;">
+        Siendo uno de los pueblos más pintorescos, se ubica en el estado de Morelos, México. Conocido por su rica historia y herencia cultural, Tepoztlán ha sido habitado desde tiempos prehispánicos por diferentes civilizaciones, incluyendo los olmecas, los toltecas y los aztecas. Además de su patrimonio histórico, Tepoztlán cuenta con hermosos paisajes naturales y atractivos turísticos. Uno de los principales puntos de interés es el Cerro del Tepozteco, una montaña sagrada donde se encuentra el antiguo templo dedicado al dios Tepoztecatl. Otras atracciones populares incluyen el Mercado Artesanal, donde se pueden encontrar artesanías y productos locales, y el Ex Convento Dominico de la Natividad, un impresionante edificio colonial que alberga un museo. La gastronomía de Tepoztlán es una fusión de sabores tradicionales mexicanos y influencias locales. Los platos típicos incluyen la barbacoa, los tamales de cacao y las quesadillas de huitlacoche.
+      </p>
+    </section>
+    {% endblock %}
+</body>
+</html>

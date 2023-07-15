@@ -1,0 +1,11 @@
+{% extends "chat/templatePadreChat.html" %}
+
+{% block visualizacionMensajes %}
+
+    {% for mensaje in mensajes %}
+    <div class="conversation">
+        <div>{{ mensaje.emisor }}: {{ mensaje.contenido }}</div>
+    </div>
+    {% endfor %}
+  
+{% endblock %}

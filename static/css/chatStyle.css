@@ -1,0 +1,169 @@
+    /* Estilos generales */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #535A5A;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+
+  /* Estilos para la top head bar */
+    .top-headbar {
+      background-color: #363838;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0px;
+      color: #fff;
+      border: 1px solid #000;
+    }
+
+    .top-headbar .profile-button {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .top-headbar .profile-button img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .top-headbar .search-input {
+      width: 300px;
+      height: 30px;
+      padding: 5px;
+      border-radius: 4px;
+    }
+
+    /* Estilos para la barra lateral */
+    .sidebar {
+      background-color: #363838;
+      width: 300px;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-x: hidden;
+      padding-top: 20px;
+      border: 1px solid #000;
+    }
+
+    /* Estilos para los elementos de la barra lateral */
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .sidebar .search-input {
+      margin-bottom: 10px;
+      padding: 6px;
+      width: 80%;
+    }
+
+    .sidebar .conversation {
+      margin-bottom: 5px;
+      padding: 8px;
+      background-color: #363838;
+      border-radius: 4px;
+      height: 40px;
+
+    }
+    .bi-search {
+      transform: rotate(90deg);
+
+    }
+
+    /* Estilos para el botón de perfil */
+    .profile-button {
+      display: block;
+      text-align: center;
+      padding: 8px;
+      background-color: #3D3F3F;
+      border-radius: 4px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+
+    /* Estilos para el contenido principal */
+    .main-content {
+      margin-left: 200px; /* ajusta el margen para dejar espacio para la barra lateral */
+      padding: 20px;
+    }
+
+    /* Estilos para el Footer */
+     body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer {
+      position: fixed;
+      left: 300px;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #363838;
+      border: 1px solid #000;
+    }
+
+    .emoticon-button,
+    .attachments-button,
+    .send-button {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .attachments-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .attachment-option {
+      display: block;
+      width: 100%;
+      padding: 8px 16px;
+      text-align: left;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    .message-input {
+      flex-grow: 1;
+      margin: 0 10px;
+    }
+
+    .message-input input[type="text"] {
+      width: 90%;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+    .message-input label[for="id_cuerpo"] {
+      display: none;
+    }
+
+    .send-button svg {
+      width: 24px;
+      height: 24px;
+      background-color: transparent;
+}
