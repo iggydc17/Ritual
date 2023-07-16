@@ -330,8 +330,8 @@ def perfilview(request):
         edit_perfil = EditPerfil(user=request.user)
         form = UserEditForm(instance=request.user)
         perfil_form = EditPerfilForm(instance=edit_perfil)
-        return render(request, 'perfil/editarPerfil.html', {"form": form, "perfil_form": perfil_form})
-    return render(request, 'perfil/perfil.html',{'usuario':perfil})
+        return render(request, 'perfil/perfil.html', {"form": form, "perfil_form": perfil_form})
+    return render(request, 'perfil/perfil.html', {'usuario': perfil})
 
 
 @login_required
@@ -478,6 +478,32 @@ def comentarBlog(request, blog_id):
     else:
         form = ComentarioBlogForm()
     return render(request, 'blog/comentarBlog.html', {'form': form})
+
+
+@login_required
+def editarComentarioBlog(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+
+    if request.method == 'POST':
+        form = ComentarioBlogForm(request.POST, instance=comentario)
+        if form.is_valid():
+            form.save()
+            return redirect('detalleBlog', blog_id=comentario.post.id)
+    else:
+        form = ComentarioBlogForm(instance=comentario)
+
+    return render(request, 'blog/editarBlogComentario.html', {'form': form, 'comentario': comentario})
+
+
+def eliminarComentarioBlog(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+    blog_id = comentario.post.id
+
+    if request.method == 'POST':
+        comentario.delete()
+        return redirect('detalleBlog', blog_id=blog_id)
+
+    return render(request, 'blog/eliminarBlogComentario.html', {'comentario': comentario})
 
 
 @login_required

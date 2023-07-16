@@ -109,3 +109,4 @@ class ComentarioBlogForm(forms.ModelForm):
     class Meta:
         model = Comentario
         fields = ('cuerpo',)
+

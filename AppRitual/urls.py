@@ -36,9 +36,9 @@ urlpatterns = [
     path('contactarExitoso/', contactarExitoso, name='contactarExitoso'),
     path('perfil/', perfilview, name="perfil"),
     path('perfil/editarPerfil/', editarPerfil, name="editarPerfil"),
-    path('perfil/editarPerfil/perfil/changePassword/', changePassword, name="changePassword"),
-    path('perfil/editarPerfil/perfil/changePassword/changePasswordExitoso', changePasswordExitoso, name="changePasswordExitoso"),
-    path('perfil/changeAvatar/', editAvatar, name="editAvatar"),
+    path('perfil/changePassword/', changePassword, name="changePassword"),
+    path('perfil/changePasswordExitoso/', changePasswordExitoso, name="changePasswordExitoso"),
+    path('perfil/editAvatar/', editAvatar, name="editAvatar"),
     path('blog/', listaBlog, name="listaBlog"),
     path('blog/crear/', crearBlog, name="crearBlog"),
     path('blog/editar/<int:blog_id>/', editarBlog, name="editarBlog"),
@@ -48,6 +48,7 @@ urlpatterns = [
     path('blog/buscar/<str:keyword>/<str:date>/', buscarBlogs, name="buscarBlogs"),
     path('blog/detalle/<int:blog_id>/', detalleBlog, name="detalleBlog"),
     path('blog/comentar/<int:blog_id>/', comentarBlog, name="comentarBlog"),
-
+    path('comentario/editar/<int:comentario_id>/', editarComentarioBlog, name='editarComentarioBlog'),
+    path('comentario/eliminar/<int:comentario_id>/', eliminarComentarioBlog, name='eliminarComentarioBlog'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
